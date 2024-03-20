@@ -1,57 +1,31 @@
-## Sparta Node Sample App
 
-## Description
-
-This app is intended for use with the Sparta Global Devops Stream as a sample app. You can clone the repo and use it as is but no changes will be accepted on this branch. 
-
-The app is a Node JS app with three pages.
-
-### Homepage
-- `192.168.10.100:3000`
-``localhost:3000``
-
-Displays a simple homepage displaying a Sparta logo and message. This page should return a 200 response.
-
-### Blog
-
-``localhost:3000/posts``
-
-This page displays a logo and 100 randomly generated blog posts. The posts are generated during the seeding step.
-
-This page and the seeding is only accessible when a database is available and the DB_HOST environment variable has been set with it's location.
-
-### A fibonacci number generator
-
-``localhost:3000/fibonacci/{index}``
-
-This page has be implemented poorly on purpose to produce a slow running function. This can be used for performance testing and crash recovery testing.
-
-The higher the fibonacci number requested the longer the request will take. A very large number can crash or block the process.
+# testing webook with github and Jenkins with Tech257-1
 
 
-### Hackable code
 
-``localhost:3000/hack/{code}``
 
-There is a commented route that opens a serious security vulnerability. This should only be enabled when looking at user security and then disabled immediately afterwards
+# CICD testing cde
+## CI testing with tech221 from localhost to Jenkins 
+## Github ssh set up
+### Testing Jenkins CI
+### Staging 1
+### Webhooks testing
+![](images/CICD.png)
+- Testing CI with Github & Jenkins for tech230 test 100
+- testing CI with webook
+- new webhook added
 
-## Usage
 
-Clone the app
-
+- CD
 ```
-npm install
-npm start
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" app ubuntu@ip:/home/ubuntu
+rsync -avz -e "ssh -o StrictHostKeyChecking=no" environment ubuntu@ip:/home/ubuntu
+ssh -o "StrictHostKeyChecking=no" ubuntu@ip <<EOF
+	sudo bash ./environment/aap/provision.sh
+    sudo bash ./environment/db/provision.sh
+    cd app
+    pm2 kill
+    pm2 start app.js
+EOF
 ```
-
-You can then access the app on port 3000 at one of the urls given above.
-
-## Tests
-
-There is a basic test framework available that uses the Mocha/Chai framework
-
-```
-npm test
-```
-
-The test for posts will fail ( as expected ) if the database has not been correctly setup.
+                                                  
