@@ -14,6 +14,11 @@ sudo apt-get install git -y
 curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
 
+# install express
+sudo npm install express
+sudo npm install mongoose
+sudo npm install ejs
+
 # install pm2
 sudo npm install pm2 -g
 
